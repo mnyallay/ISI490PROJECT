@@ -1,58 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{!empty($seo)?$seo->description:''}}">
-    <meta name="keywords" content="{{!empty($seo)?$seo->keyword:''}}">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>NYALLAY'S Online Grocery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link href="/assets/plugins/jquery-polymaps/style.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="/assets/plugins/jquery-metrojs/MetroJs.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/shape-hover/css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/shape-hover/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/owl-carousel/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/owl-carousel/owl.theme.css" />
+    <link href="/assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="/assets/plugins/jquery-slider/css/jquery.sidr.light.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="/assets/plugins/jquery-isotope/isotope.css" rel="stylesheet" type="text/css"/>
+    <!-- BEGIN CORE CSS FRAMEWORK -->
+    <link href="/assets/plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/plugins/boostrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/animate.min.css" rel="stylesheet" type="text/css"/>
+    <!-- END CORE CSS FRAMEWORK -->
+    <!-- BEGIN CSS TEMPLATE -->
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/magic_space.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/tiles_responsive.css" rel="stylesheet" type="text/css"/>
 
+    <!-- END CSS TEMPLATE -->
 
-
-    <title>{{!empty($system)?$system->title:''}}</title>
-    <link href="/assets_frontend/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets_frontend/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/assets_frontend/css/prettyPhoto.css" rel="stylesheet">
-    <link href="/assets_frontend/css/price-range.css" rel="stylesheet">
-    <link href="/assets_frontend/css/animate.css" rel="stylesheet">
-    <link href="/assets_frontend/css/main.css" rel="stylesheet">
-    <link href="/assets_frontend/css/responsive.css" rel="stylesheet">
     @yield('extra_css')
 
-    <!--[if lt IE 9]>
-    <script src="/assets_frontend/js/html5shiv.js"></script>
-    <script src="/assets_frontend/js/respond.min.js"></script>
-    <![endif]-->
-    <link rel="/assets_frontend/shortcut icon" href="/assets_frontend/images/ico/favicon.ico">
-    <link rel="/assets_frontend/apple-touch-icon-precomposed" sizes="144x144" href="/assets_frontend/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="/assets_frontend/apple-touch-icon-precomposed" sizes="114x114" href="/assets_frontend/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="/assets_frontend/apple-touch-icon-precomposed" sizes="72x72" href="/assets_frontend/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="/assets_frontend/apple-touch-icon-precomposed" href="/assets_frontend/images/ico/apple-touch-icon-57-precomposed.png">
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="">
+<!-- BEGIN HEADER -->
+@include('layouts.header')
+<!-- END HEADER -->
+<!-- BEGIN CONTAINER -->
+<div class="page-container row-fluid">
 
-    {!!!empty($seo)?$seo->google_analytics:''!!}
+   @include('layouts.sidebar')
 
-</head><!--/head-->
+    <!-- BEGIN PAGE CONTAINER-->
+    <div class="page-content ">
+        <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+        <div class="clearfix"></div>
+        <div class="content">
+           @yield('content')
+        </div>
+    </div>
 
-<body>
+</div>
 
-@include('frontend.header')
+<!-- END CONTAINER -->
 
+<!-- END CONTAINER -->
+<!-- BEGIN CORE JS FRAMEWORK-->
 
-@yield('content')
+<!--[if lt IE 9]>
+<script src="/assets/plugins/respond.js"></script>
+<![endif]-->
 
-@include('frontend.footer')
-
-
-<script src="/assets_frontend/js/jquery.js"></script>
+<script src="/assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="/assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+<script src="/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/assets/plugins/breakpoints.js" type="text/javascript"></script>
+<script src="/assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
+<script src="/assets/plugins/jquery-block-ui/jqueryblockui.js" type="text/javascript"></script>
+<script src="/assets/plugins/jquery-lazyload/jquery.lazyload.min.js" type="text/javascript"></script>
+<!-- END CORE JS FRAMEWORK -->
+<!-- BEGIN PAGE LEVEL JS -->
+<script src="/assets/plugins/jquery-slider/jquery.sidr.min.js" type="text/javascript"></script>
+<script src="/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="/assets/plugins/webarchScroll.js" type="text/javascript"></script>
+<script src="/assets/plugins/pace/pace.min.js" type="text/javascript"></script>
+<script src="/assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
+<script src="/assets/plugins/skycons/skycons.js"></script>
+<script src="/assets/plugins/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
 @yield('extra_js')
-<script src="/assets_frontend/js/price-range.js"></script>
-<script src="/assets_frontend/js/jquery.scrollUp.min.js"></script>
-<script src="/assets_frontend/js/bootstrap.min.js"></script>
-<script src="/assets_frontend/js/jquery.prettyPhoto.js"></script>
-<script src="/assets_frontend/js/main.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
+<script src="/assets/plugins/jquery-metrojs/MetroJs.min.js" type="text/javascript" ></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN CORE TEMPLATE JS -->
+<script src="/assets/js/core.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".live-tile,.flip-list").liveTile();
     });
 </script>
+
+<!-- END CORE TEMPLATE JS -->
 </body>
 </html>

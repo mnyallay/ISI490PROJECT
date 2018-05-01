@@ -1,64 +1,163 @@
-@extends('layouts.master')
-
-@section('extra_css')
-    <link href="/assets/plugins/bootstrap-select2/select2.css" rel="stylesheet" type="text/css" media="screen"/>
-    <link href="/assets/plugins/jquery-datatable/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/plugins/boostrap-checkbox/css/bootstrap-checkbox.css" rel="stylesheet" type="text/css" media="screen"/>
-    <link href="/assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen"/>
-@stop
-
-@section('extra_js')
-    <script src="/assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
-    <script src="/assets/plugins/jquery-datatable/js/jquery.dataTables.min.js" type="text/javascript" ></script>
-    <script src="/assets/plugins/jquery-datatable/extra/js/TableTools.min.js" type="text/javascript" ></script>
-    <script type="text/javascript" src="/assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
-    <script src="/assets/js/datatables.js" type="text/javascript"></script>
-@stop
+@extends('frontend.master')
 
 @section('content')
-    <div class="row-fluid">
-        <div class="span12">
-            <div class="grid simple ">
-                <div class="grid-title">
-                    <h4> <span class="semi-bold">Administrators</span></h4>
-                    <div class="tools"> <a href="javascript:;" class="collapse"></a> <a href="#grid-config" data-toggle="modal" class="config"></a> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>
+    <div class="col-sm-8 col-sm-offset-2">
+    @if(Session::has('success-msg'))
+        <p class="alert alert-success">{{ Session::get('success-msg') }}</p>
+    @endif
+    @if(Session::has('paid-msg'))
+        <p class="alert alert-success">{{ Session::get('paid-msg') }}</p>
+    @endif
+        </div>
+
+    <section id="slider"><!--slider-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#slider-carousel" data-slide-to="1"></li>
+                            <li data-target="#slider-carousel" data-slide-to="2"></li>
+                        </ol>
+
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-6">
+                                    <h1><span>NYALLAY'S</span> Online Grocery Food Shopping </h1>
+                                    <h2> Shop Online</h2>
+                                    <p> Online grocery shopping can save you time, stress, gas money, and expose you to new types of foods and brands you can’t get at your local grocery store.. </p>
+                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    {{--<img src="/assets_frontend/images/home/girl1.jpg" class="girl img-responsive" alt="" />--}}
+                                    {{--<img src="/assets_frontend/images/home/pricing.png"  class="pricing" alt="" />--}}
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-6">
+                                    <h1><span>NYALLAY'S</span> Online Grocery Food Shopping</h1>
+                                    <h2>Open 24/7</h2>
+                                    <p> Nyallay’s Online Grocery Food Shopping offers a pretty good variety of items and prices are reasonable. </p>
+                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    {{--<img src="/assets_frontend/images/home/girl2.jpg" class="girl img-responsive" alt="" />--}}
+                                    {{--<img src="/assets_frontend/images/home/pricing.png"  class="pricing" alt="" />--}}
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="col-sm-6">
+                                    <h1><span>NYALLAY'S</span> Online Grocery Food Shopping</h1>
+                                    <h2>Free Shipping on Staten Island </h2>
+                                    <p> Online grocery shopping can save you time, stress, gas money, and expose you to new types of foods and brands you can’t get at your local grocery store. </p>
+                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    {{--<img src="/assets_frontend/images/home/girl3.jpg" class="girl img-responsive" alt="" />--}}
+                                    {{--<img src="/assets_frontend/images/home/pricing.png" class="pricing" alt="" />--}}
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
 
                 </div>
-
-                <div class="grid-body ">
-                   <a href="/administrator/create_admin"> <button class="btn btn-primary"  style="margin-bottom:20px" id="test2">Add Administrator</button></a>
-                    <table class="table" id="example3" >
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        @foreach ($admins as $admin)
-
-                        <tr class="odd gradeX">
-                            <td>{{$admin->name}}</td>
-                            <td>{{$admin->email}}</td>
-                            <td>{{$admin->role}}</td>
-                            <td><a href="/administrator/edit_admin/{{$admin->id}}"> <button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
-                            <td><a href="/administrator/delete_admin/{{$admin->id}}"><button type="button" class="btn btn-danger btn-sm">Delete</button></a></td>
-
-                        </tr>
-
-                        @endforeach
+            </div>
+        </div>
+    </section><!--/slider-->
 
 
-                        </tbody>
-                    </table>
+    <section>
+    <div class="container">
+        <div class="row">
+            @include('frontend.sidebar')
+
+
+
+            <div class="col-sm-9 padding-right">
+                @if(sizeof($featured)>0)
+
+                {{--<div class="recommended_items"><!--recommended_items-->--}}
+                    {{--<h2 class="title text-center">Featured items</h2>--}}
+
+                    {{--<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">--}}
+                        {{--<div class="carousel-inner">--}}
+                            {{--<div class="item active">--}}
+                                {{--@foreach ($featured as $feature)--}}
+
+                                    {{--<div class="col-sm-4">--}}
+                                        {{--<div class="product-image-wrapper" onclick="location.href='/product_details/{{$feature->id}}'">--}}
+                                            {{--<div class="single-products">--}}
+                                                {{--<div class="productinfo text-center">--}}
+                                                    {{--@if (sizeof($feature->images) > 0)--}}
+                                                        {{--<img style="width: 150px;height: 150px" src="{{$feature->images[0]->image}}" alt="" />--}}
+                                                    {{--@endif--}}
+                                                    {{--<h2 style='text-decoration: line-through;'>${{$feature->price}}</h2>--}}
+                                                    {{--<h2>${{$feature->offer_price}}</h2>--}}
+                                                    {{--<p>{{$feature->name}}</p>--}}
+                                                    {{--<a href="/product/{{$feature->id}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>--}}
+                                                {{--</div>--}}
+
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+
+                                {{--@endforeach--}}
+
+                            {{--</div>--}}
+
+                        {{--</div>--}}
+
+                    {{--</div>--}}
+                {{--</div><!--/recommended_items-->--}}
+
+                @endif
+
+                @if(sizeof($products)>0)
+
+                <div class="features_items"><!--features_items-->
+                    <h2 class="title text-center">New Items</h2>
+
+
+                    @foreach ($products as $product)
+
+                        <div class="col-sm-4" >
+                            <div class="product-image-wrapper" onclick="location.href='/product_details/{{$product->id}}'">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        @if (sizeof($product->images) > 0)
+                                            <img style="width: 200px;height: 200px" src="{{$product->images[0]->image}}" alt="" />
+                                        @endif
+                                        <h2 style='text-decoration: line-through;'>${{$product->price}}</h2>
+                                        <h2>${{$product->offer_price}}</h2>
+                                        <p>{{$product->name}}</p>
+                                        <a href="/product/{{$product->id}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+
+                </div><!--features_items-->
+
+                @endif
+
+                <div class="pull-right">
+                    {!! $products->render() !!}
                 </div>
             </div>
         </div>
     </div>
+</section>
 
 @stop

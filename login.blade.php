@@ -1,103 +1,100 @@
-@extends('frontend.master')
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>NYALLAY'S Online Grocery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN CORE CSS FRAMEWORK -->
+    <link href="/assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="/assets/plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/plugins/boostrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/animate.min.css" rel="stylesheet" type="text/css"/>
+    <!-- END CORE CSS FRAMEWORK -->
+    <!-- BEGIN CSS TEMPLATE -->
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/magic_space.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
+    <!-- END CSS TEMPLATE -->
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="error-body no-top lazy" style="background-image: url('/assets/img/work.jpg')">
+<div class="container">
+    <div class="row login-container animated fadeInUp">
+        <div class="col-md-7 col-md-offset-2 tiles white no-padding">
+            <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10">
+                <h2 class="normal">Sign in to NYALLAY'S Online Grocery</h2>
+                <p>Secure Login only administrator will have access <br></p>
+                <p class="p-b-20">Administrators can be only added from dashboard</p>
+            </div>
+            <div class="tiles grey p-t-20 p-b-20 text-black">
+                <div class="grid-body no-border"> <br>
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if(Session::has('error_msg'))
+                        <p class="alert alert-danger">{{ Session::get('error_msg') }}</p>
+                    @endif
+                <form id="frm_login" class="animated fadeIn" action="/administrator/auth/login" method="post">
 
-@section('content')
+                    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
 
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                        <div class="col-md-6 col-sm-6 ">
+                            <input id="login_username" name="email" type="text"  class="form-control" placeholder="Enter Email">
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <input id="login_pass" type="password" name="password"  class="form-control" placeholder="Enter Password">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label">Role</label>
+                            <select class="form-control" name="role">
 
-    <section id="form"><!--form-->
-        <div class="container">
-            <div class="row">
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                                <option value="Administrator" >Administrator</option>
+                                <option value="Manager" >Manager</option>
+                                <option value="Accountant" >Accountant</option>
+
+                            </select>
+                        </div>
                     </div>
-                @endif
-                <div class="col-sm-4 col-sm-offset-1">
-                    <div class="login-form"><!--login form-->
-                        <h2>Login to your account</h2>
-                        <form action="/login" method="post">
-                            @if(Session::has('success-msg'))
-                                <p class="alert alert-danger">{{ Session::get('success-msg') }}</p>
-                            @endif
-                            <input type="email" name="email"  placeholder="Email Address" />
-                                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                            <input type="password" name="password" placeholder="Enter Password" />
-							<span>
-								<input type="checkbox" class="checkbox">
-								Keep me signed in
-							</span>
-                            <button type="submit" >Login</button>
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-                                    Forget Password
-                                </button>
-                        </form>
-
-                    </div><!--/login form-->
-                </div>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <form action="/password/email" method="post">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Forget Password?</h4>
-                                </div>
-                                <div class="modal-body">
-
-
-                                        @if(Session::has('success-msg'))
-                                            <p class="alert alert-danger">{{ Session::get('success-msg') }}</p>
-                                        @endif
-                                            <div class="input-group input-group-md">
-                                                <span class="input-group-addon" id="sizing-addon1">@</span>
-                                                <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
-                                            </div>
-                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
-
-
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success">Save changes</button>
-                                </div>
-                                    </form>
-
+                    <div class="row p-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                        <div class="control-group  col-md-12">
+                            <div class="checkbox checkbox check-success"> <a href="#">Trouble login in?</a>&nbsp;&nbsp;
+                                <input type="checkbox" id="checkbox1" value="1">
+                                <label for="checkbox1">Keep me reminded </label>
+                                <button type="submit"  class="btn btn-primary btn-cons pull-right" id="login_toggle">Login</button>
                             </div>
                         </div>
                     </div>
-                <div class="col-sm-1">
-                    <h2 class="or">OR</h2>
-                </div>
-                <div class="col-sm-4">
-                    <div class="signup-form"><!--sign up form-->
-                        <h2>New User Signup!</h2>
-                        <form action="/register" method="post">
-                            @if(Session::has('success-msg-registered'))
-                                <p class="alert alert-success">{{ Session::get('success-msg-registered') }}</p>
-                            @endif
-                            <input type="text" name="name" value="{{old('name')}}" placeholder="Name"/>
-                                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                <input type="email"name="email" value="{{old('email')}}" placeholder="Email Address"/>
-                            <input type="password" name="password" placeholder="Password"/>
-                            <input type="text" name="phone" value="{{old('phone')}}" placeholder="Phone"/>
-                            <input type="text" name="address" value="{{old('address')}}" placeholder="Address"/>
-                            <input type="text" name="zip" value="{{old('zip')}}" placeholder="Zip Code"/>
-                            <input type="text" name="city" value="{{old('city')}}" placeholder="City"/>
-                            <button type="submit" class="btn btn-default">Signup</button>
-                        </form>
-                    </div><!--/sign up form-->
-                </div>
+                </form>
             </div>
         </div>
-    </section><!--/form-->
+    </div>
+</div>
+    </div>
+<!-- END CONTAINER -->
+<!-- BEGIN CORE JS FRAMEWORK-->
+<script src="/assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/assets/plugins/pace/pace.min.js" type="text/javascript"></script>
+<script src="/assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="/assets/plugins/jquery-lazyload/jquery.lazyload.min.js" type="text/javascript"></script>
+<script src="/assets/js/login_v2.js" type="text/javascript"></script>
+<!-- BEGIN CORE TEMPLATE JS -->
+<!-- END CORE TEMPLATE JS -->
+</body>
 
 
 
-
-@stop
+</html>
